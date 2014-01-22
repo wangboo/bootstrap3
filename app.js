@@ -7,7 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-
+var Crumb = require("./middleware/mid_crumb.js");
+var partials = require("express-partials");
 var app = express();
 
 // all environments
@@ -19,6 +20,13 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(Crumb());
+app.use(partials());
+//app.use(function(req, res, next){
+//   console.log("middleware");
+//   console.log(arguments);
+//   next();
+//});
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
