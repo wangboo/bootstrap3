@@ -5,32 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/css/bootstrap.css' />
-    <style type="text/css">
-        .footer {
-            padding: 19px 20px 20px;
-            margin-top: 15px;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
-        }
-        .image-border{
-            border: 1px solid;
-            border-color: #66afe9;
-            border-radius: 4px;
-            width: 162px;
-            height: 162px;
-        }
-        .footer {
-            background-color: #fff;
-        }
-        #content {
-            background-color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
     <script src="/js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.js" type="text/javascript"></script>
     <script src="/js/changebg.js" type="text/javascript"></script>
 </head>
-<body onload="changebg()">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -52,6 +32,7 @@
                     <li><a href="/">反馈区</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="modal" data-target="#changebgModal" href="#">背景</a></li>
                     <li><a href="/">资料</a></li>
                 </ul>
             </div>
@@ -59,7 +40,6 @@
     </div>
 
     <div class="container" id="content" style="padding-top: 60px">
-        <button data-toggle="modal" data-target="#changebgModal">add</button>
         <div class="content">
             <ol class="breadcrumb">
                 <% crumb.forEach(function(item) {%>
@@ -73,6 +53,7 @@
                 <p><span class="label label-default">wangboo 2014</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;版权所有 此内容系根据您的指令自动搜索的结果，不代表赞成的内容或立场</p>
         </div>
 
+        <!-- 选择背景模态框-->
         <div class="modal fade" id="changebgModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -84,32 +65,32 @@
                         <div class="row" style="padding: 10px 0px 20px 10px">
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/robots.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/robots.png')"><img src='/img/robots.png'/></a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/cartographer.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/cartographer.png')"><img src='/img/cartographer.png'/></a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/escheresque_ste.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/escheresque_ste.png')"><img src='/img/escheresque_ste.png'/></a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/cuppycake.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/cuppycake.png')"><img src='/img/cuppycake.png'/></a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/monsturs.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/monsturs.png')"><img src='/img/monsturs.png'/></a>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class='image-border'>
-                                    <a href="#"><img src='/img/colours.png' style="width: 160px;height: 160px"/></a>
+                                    <a href="#" onclick="changebg('/img/colours.png')"><img src='/img/colours.png'/></a>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +98,8 @@
                 </div>
             </div>
         </div>
+        <!-- 模态框  over-->
+
     </div>
 </body>
 </html>
