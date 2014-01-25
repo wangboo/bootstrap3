@@ -23,8 +23,23 @@ body {
 #content {
     background-color: #fff;
 }
+.content {
+    padding-top: 70px;
+}
 #changebgModal img {
     width: 160px;
     height: 160px;
     cursor: hand;
+}
+.a-red {
+    color: indianred;
+}
+.a-blue {
+    color: cornflowerblue;
+}
+.a-green {
+    color: lightgreen;
+}
+.a-black {
+    color: #000000;
 }
