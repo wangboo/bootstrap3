@@ -1,5 +1,6 @@
 
 <link href="/css/node.css" rel="stylesheet">
+<script src="/js/node.js" type="text/javascript"></script>
 <div class="panel col-md-8" id="node-list">
     <div class="inner">
         <div class="header clearfix">
@@ -7,10 +8,11 @@
         </div>
 
         <div id="node-list">
+            <%for(var i=0;i<10;i++){%>
             <div class="cell">
                 <div class="user-icon block">
                     <a href="#">
-                        <img src="/img/icon0.jpg">
+                        <img src="/img/icon0.jpg" index="<%=i%>">
                     </a>
                 </div>
                 <div class="block count">
@@ -23,9 +25,18 @@
                     5个小时前
                 </div>
             </div>
+            <%}%>
             <!-- 提示-->
             <div id="user-icon-info">
-                wangboo
+                <div class="name">wangboo</div>
+                <div class="level">
+                    <span class="label label-default" id="level">1</span>级
+                </div>
+                <p id="gameInfo">魔兽世界1区铁炉堡服</p>
+                <p id="gameName">三季稻(法师)</p>
+                <p id="gameLevel">等级90级</p>
+                <p id="gameScore">装等：19081</p>
+
             </div>
 
         </div>
@@ -46,3 +57,17 @@
     </div>
 </div>
  <div class="clearfix"></div>
+<script type="text/javascript">
+    //构造测试数据
+    var userInfoArr = [];
+    var actors = ["法师","牧师","术士","德鲁伊","萨满","猎人","战士","圣骑士","熊猫人","黑暗骑士"];
+    for(var i=0;i<10;i++) {
+        userInfoArr.push({
+            level:      Math.round(Math.random()*10+10),
+            name:       "名字"+i,
+            gameLevel:  Math.round(Math.random()*50+20),
+            gameActor:  actors[Math.round(Math.random()*actors.length)],
+            gameScore:  Math.round(Math.random()*20000)
+        });
+    }
+</script>

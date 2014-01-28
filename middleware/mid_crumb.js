@@ -13,7 +13,6 @@ function MidCrumb(req, resp, next) {
     next();
 }
 
-
 module.exports = function() {
     return MidCrumb;
 }

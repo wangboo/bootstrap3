@@ -42,7 +42,34 @@
 
 /*头像弹出说明*/
 #node-list #user-icon-info{
-    border: 1px darkgrey solid;
-    line-height: 0%;
-    background-color: #77777777;
+    position: absolute;
+    border-radius: 10px;
+    border: 2px #dca7a7 solid;
+    left: 100px;
+    width: 150px;
+    background: transparent;
+    background-color: #f9f9f9;
 }
+
+#node-list .name {
+    margin: 4px 0px 4px 5px;
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+}
+#node-list .level {
+    display: inline-block;
+    float: right;
+    margin-right: 8px;
+}
+#node-list span {
+    font-size: 12px;
+    display: inline-block;
+}
+
+#node-list p {
+    margin: 2px 0px 4px 2px;
+    padding-left: 4px;
+}
+
+
