@@ -14,10 +14,9 @@
 <script type="text/javascript">
     swfobject.addDomLoadEvent(function () {
         var swf = new fullAvatarEditor("swfContainer", {
-                    id: 'swf',
+                    id: 'swfContainer',
                     upload_url: '/user/create',
-                    src_url: "/img/icon_default.jpg",
-                    src_upload:2
+                    src_upload:0
                 }, function (msg) {
                     switch(msg.code) {
                         case 5 :
