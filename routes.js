@@ -11,6 +11,12 @@ module.exports = function(app) {
         app.get("/regist", main.regist);
         app.post("/user/create", function(req, res) {
            console.log(req);
+            res.send({
+                success: true,
+                sourceUrl: "sourceUrl",
+                avatarUrls: "avatarUrls"
+            });
+            res.end();
         });
 
     }
