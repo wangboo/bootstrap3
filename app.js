@@ -18,6 +18,11 @@ app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
+app.use(express.bodyParser({
+    uploadDir: '/Users/wangboo/WebstormProjects/bootstrap3/public/icon/',
+    keepExtensions: true,
+    limit: '10mb'
+}));
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(Crumb());

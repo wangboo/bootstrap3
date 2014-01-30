@@ -13,3 +13,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
     console.log(req.body);
 }
+
+exports.regist = function(req, res) {
+    res.render("regist");
+}
