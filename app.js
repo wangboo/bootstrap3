@@ -1,15 +1,29 @@
-
-/**
- * Module dependencies.
- */
-
+var fs = require("fs");
+var connect = require("connect");
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var Crumb = require("./middleware/mid_crumb.js");
+var midCrumb = require("./middleware/mid_crumb.js");
+var midLayout = require("./middleware/mid_layout.js");
 var partials = require("express-partials");
 var app = express();
+//载入自定义配置文件
+var configFile = fs.readFileSync("./configure.json", "utf-8");
+var config = eval("("+configFile+")");
+app.config = config;
+//日志文件
+var infoLogFile = fs.createWriteStream(config.infoLog, {flags: 'a'});
+var errorLogFile = fs.createWriteStream(config.errorLog, {flags: 'a'});
+
 var routes = require("./routes.js")(app);
+var mongoose = require("mongoose");
+var SessionMongoose = require("session-mongoose")(connect);
+var sessionStore = new SessionMongoose({
+    url: config.sessionDb,
+    interval: 120000
+});
+
+mongoose.connect(config.db);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -25,7 +39,18 @@ app.use(express.bodyParser({
 }));
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(Crumb());
+//使用session
+app.use(express.cookieParser());
+app.use(express.session({
+    secret: 'wangbo',
+    maxAge: 3600000,
+    store: sessionStore
+}));
+//使用breadcrumb中间件
+app.use(midCrumb());
+//使用框架数据查询中间件
+app.use(midLayout());
+//使用视图框架
 app.use(partials());
 
 routes(app);

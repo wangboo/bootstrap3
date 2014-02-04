@@ -1,0 +1,103 @@
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="well">
+            <div style="text-align: center"><h3>用户注册</h3></div>
+            <form role="form" action="/user/create" method="post">
+                <div class="form-group">
+                    <label for="username" id="usernameLabel">账号</label>
+                    <input type="text" class="form-control" placeholder="请输入邮箱或者qq号码" id="username" name="user[username]">
+                </div>
+                <div class="form-group">
+                    <label for="nickname" id="nicknameLabel">昵称</label>
+                    <input type="text" class="form-control" placeholder="请输入昵称" id="nickname" name="user[nickname]">
+                </div>
+                <div class="form-group">
+                    <label for="password" id="passwordLabel">密码</label>
+                    <input type="password" class="form-control" placeholder="请输入密码" id="password" name="user[password]">
+                </div>
+                <div class="form-group">
+                    <label for="password2" id="password2Label">确认密码</label>
+                    <input type="password" class="form-control" placeholder="请再次输入密码" id="password2">
+                </div>
+                <div class="text-center"><button class="btn btn-info" type="submit">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .input-error {
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red;
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px red;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        //校验账号
+        $("#username").blur(function(){
+            var username = $("#username");
+            var usernameLabel = $("#usernameLabel");
+            var val = username.val();
+            if(val.length<5) {
+                username.addClass("input-error");
+                usernameLabel.addClass("text-danger");
+                usernameLabel.text("账号太短了");
+                return;
+            }
+            //匹配全数字的qq号或者密码
+            if(/^\d+$/.test(username.val()) ||
+                    /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(username.val())) {
+                username.removeClass("input-error");
+                usernameLabel.removeClass("text-danger");
+                usernameLabel.text("账号");
+                //向服务器验证用户名是否可用
+                $.post("/user/findUsername", {username: username.val()}, function(data){
+                    if(data.success) {
+                        username.removeClass("input-error");
+                        usernameLabel.removeClass("text-danger");
+                        usernameLabel.text("账号可用");
+                    }else {
+                        username.addClass("input-error");
+                        usernameLabel.addClass("text-danger");
+                        usernameLabel.text(data.msg);
+                    }
+                });
+            }else{
+                username.addClass("input-error");
+                usernameLabel.addClass("text-danger");
+                usernameLabel.text("账号必须为qq号码或者邮箱");
+            }
+        });
+        //检验密码
+       $("#password").blur(function() {
+           var password = $("#password");
+           var passwordLabel = $("#passwordLabel");
+           if(/^\S{6,20}$/.test(password.val())) {
+               password.removeClass("input-error");
+               passwordLabel.removeClass("text-danger");
+               passwordLabel.text("密码");
+           }else{
+               password.addClass("input-error");
+               passwordLabel.addClass("text-danger");
+               passwordLabel.text("密码至少需要6位,不能含有空格");
+           }
+       });
+        //校验密码确认
+        $("#password2").blur(function(){
+            var password = $("#password2");
+            var passwordLabel = $("#password2Label");
+            var pwd = $("#password").val();
+            if(pwd == password.val()) {
+                password.removeClass("input-error");
+                passwordLabel.removeClass("text-danger");
+                passwordLabel.text("确认密码");
+            }else {
+                password.addClass("input-error");
+                passwordLabel.addClass("text-danger");
+                passwordLabel.text("二次密码不正确");
+            }
+        });
+    });
+</script>

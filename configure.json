@@ -1,0 +1,6 @@
+{
+    "infoLog": "/Users/wangboo/Desktop/bootstrap-logs/info.log"
+    , "errorLog": "/Users/wangboo/Desktop/bootstrap-logs/error.log"
+    , "sessionDb": "mongodb://127.0.0.1:27017/session"
+    , "db": "mongodb://127.0.0.1:27017/bootstrap3"
+}
