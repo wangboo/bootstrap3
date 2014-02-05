@@ -10,22 +10,9 @@ exports.new = function(req, res) {
     }]);
     res.render("user/new");
 }
-//账号存在查询
-exports.findUsername = function(req, res) {
-    var username = req.body["username"];
-    model.User.findOne({username: username}, function(err, data){
-        if(err) {
-            res.send({"success": false, "msg": err.message});
-        }else if(data){
-            res.send({"success": false, "msg": "账号已经存在"});
-        }else {
-            res.send({"success": true});
-        }
-        res.end();
-    });
-}
 //创建账号,成功后跳转到人物信息界面
 exports.create = function(req, res) {
+    req.body.user.lastLoginIp = req.connection.remoteAddress;
     var user = new model.User(req.body.user);
     user.save(function(err){
         if(err) {

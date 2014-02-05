@@ -1,0 +1,22 @@
+{
+    "appenders": [
+        {
+            "type": "console"
+            , "category": "info"
+        },
+        {
+            "type": "file",
+            "filename": "/Users/wangboo/Desktop/bootstrap-logs/info.log",
+            "maxLogSize": 10240000,
+            "backups": 10,
+            "category": "info"
+        },
+        {
+            "type": "file",
+            "filename": "/Users/wangboo/Desktop/bootstrap-logs/error.log",
+            "maxLogSize": 10240000,
+            "backups": 10,
+            "category": "error"
+        }
+    ]
+}

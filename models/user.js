@@ -17,9 +17,13 @@ var userSchema = new Schema({
     //自我描述
     desc:       String,
     //账号创建日期, 默认日期为当前
-    create_at:  {type: Date, default: Date.now},
+    createAt:  {type: Date, default: Date.now},
+    //上次登陆ip
+    lastLoginIp: String,
     //等级
-    star:       Number
+    star:       Number,
+    //网站背景
+    webBg:      {type: String, default: "/img/robots.png"}
 });
 
 //通过账号和密码查询用户

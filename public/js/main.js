@@ -20,4 +20,5 @@ $(function(){
 function changebg(img) {
     $("body").css("background-image", "url('"+img+"')");
     $("#changebgModal").modal('toggle');
+    $.post("/json/changeBg", {"webBg": img}, function(){});
 }

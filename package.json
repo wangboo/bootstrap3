@@ -11,5 +11,6 @@
         "express-partials": "0.2.0",
         "mongoose": "*",
         "session-mongoose": "0.4.1"
+        ,"log4js": "0.6.9"
     }
 }
