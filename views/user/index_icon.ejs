@@ -1,0 +1,48 @@
+<script type="text/javascript" src="/js/swfobject.js"></script>
+<script type="text/javascript" src="/js/fullAvatarEditor.js"></script>
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="/user/<%=user.id%>">基本资料</a></li>
+            <li class="active"><a href="/user/<%=user.id%>/icon">头像</a></li>
+            <li><a href="/user/<%=user.id%>/password">密码</a></li>
+            <li><a href="/user/<%=user.id%>/advance">高级</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <div>
+            <h2 style="text-align:center">编辑您的头像</h2>
+            <div>
+                <p id="swfContainer">
+                    本组件需要安装Flash Player后才可使用，请从
+                    <a href="http://www.adobe.com/go/getflashplayer">这里</a>
+                    下载安装。
+                </p>
+            </div>
+            <div style="text-align: center">
+                <button class="btn btn-default" id="upload">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info" id="reset">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    swfobject.addDomLoadEvent(function () {
+        //see api http://www.fullavatareditor.com/api.html
+        var swf = new fullAvatarEditor("swfContainer", {
+                    id: 'swfContainer',
+                    upload_url: '/json/updateUserIcon',
+                    src_upload: 0,
+                    src_url: "<%=user.icon_big%>"
+                },
+                function (msg) {
+                    console.log("update result ", msg);
+                });
+        $("#upload").click(function(){
+            swf.call("upload");
+        });
+        $("#reset").click(function(){
+            swf.call("loadPic", "/icon/default.jpg");
+        });
+    })
+</script>

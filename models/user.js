@@ -10,10 +10,12 @@ var userSchema = new Schema({
     password:   String,
     //昵称
     nickname:   String,
-    //小头像
-    small_icon: String,
     //大头像
-    big_icon:   String,
+    icon_big: String,
+    //中头像
+    icon_middle:   String,
+    //小头像
+    icon_small: String,
     //自我描述
     desc:       String,
     //账号创建日期, 默认日期为当前

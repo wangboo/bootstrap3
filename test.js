@@ -1,6 +1,6 @@
-var a = {a: "a", b: "b"};
-var b = {1: "1", 2: "2"};
-for(var m in a) {
-    b[m] = a[m];
-}
-console.log(b);
+
+//var fs = require("fs");
+//fs.remove("./public/icon/18255-1c3q8kf");
+var reg = /^(\/json\/).*$/;
+var words = "/json/test";
+console.log(words.match(reg));

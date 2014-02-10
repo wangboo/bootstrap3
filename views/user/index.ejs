@@ -1,3 +1,12 @@
+<style type="text/css">
+    #form-user{
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    #form-icon {
+        margin-top: 20px;
+    }
+</style>
 <div class="row">
     <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked">
@@ -8,20 +17,37 @@
         </ul>
     </div>
     <div class="col-md-4 col-md-offset-2">
-        <form role="form" method="user/<%=user.id%>/update">
-            <div class="form-group">
-                <label for="username">账号</label>
-                <input class="form-control" id="username" disabled value="<%=user.username%>">
+        <form role="form" method="post" action="/user/<%=user.id%>/update">
+            <div class="col-md-8" id="form-user">
+                <div class="form-group">
+                    <label for="username">账号</label>
+                    <input class="form-control" id="username" disabled value="<%=user.username%>">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">昵称</label>
+                    <input class="form-control" id="nickname" value="<%=user.nickname||""%>" name="nickname">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="nickname">昵称</label>
-                <input class="form-control" id="nickname" value="<%=user.nickname%>" name="user[nickname]">
+            <div class="col-md-4">
+                <a href="/user/<%=user.id%>/icon">
+                    <img id="form-icon" src="<%=user.icon_middle%>" width="100px" height="100px">
+                </a>
+                <a href="/user/<%=user.id%>/icon">
+                    <div style="text-align: center; margin-top: 8px">
+                        编辑头像
+                    </div>
+                </a>
             </div>
-            <div class="form-group">
-                <label for="desc">自我描述</label>
-                <textarea class="form-control" id="desc" value="<%=user.desc||""%>" rows="5"></textarea>
+            <div class="col-md-12" id="form-user">
+                <div class="form-group">
+                    <label for="desc">自我描述</label>
+                    <textarea class="form-control" id="desc" name="desc" value="<%=user.desc||""%>" rows="5"><%=user.desc||""%></textarea>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <button class="btn btn-default" type="submit">修改</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info" type="reset">刷新</button>
             </div>
         </form>
     </div>
-
 </div>

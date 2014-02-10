@@ -19,7 +19,9 @@ module.exports = function(app) {
         //用户信息界面
         app.get("/user/:id", user.index);
         //更改用户信息
-        app.post("/user/:id", user.update);
+        app.post("/user/:id/update", user.update);
+        //用户信息界面（头像）
+        app.get("/user/:id/icon", user.indexIcon);
 
 
 
@@ -27,5 +29,12 @@ module.exports = function(app) {
         app.post("/json/changeBg", json.changeBg);
         //账号存在查询 json
         app.post("/json/findUsername", json.findUsername);
+        //修改头像
+        app.post("/json/updateUserIcon", json.updateUserIcon);
+
+        app.get("/json/test", function(req, res){
+            res.send({success: true});
+        });
+
     }
 }

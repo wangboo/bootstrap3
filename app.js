@@ -43,7 +43,7 @@ app.use(express.bodyParser({
 //app.use(express.methodOverride());
 //使用session
 app.use(express.cookieParser());
-    app.use(express.session({
+app.use(express.session({
     secret: 'wangbo',
     maxAge: 3600000,
     store: sessionStore

@@ -53,7 +53,7 @@
                 usernameLabel.removeClass("text-danger");
                 usernameLabel.text("账号");
                 //向服务器验证用户名是否可用
-                $.post("/user/findUsername", {username: username.val()}, function(data){
+                $.post("/json/findUsername", {username: username.val()}, function(data){
                     if(data.success) {
                         username.removeClass("input-error");
                         usernameLabel.removeClass("text-danger");
