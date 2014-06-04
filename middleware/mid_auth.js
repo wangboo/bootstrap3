@@ -34,6 +34,7 @@ module.exports = function(req, res, next) {
             var password = auth.shift();
             model.User.findByUsernameAndPassword(username, password, function(err, user){
                 if(err){
+                  console.error("findByUsernameAndPassword ", err)
                 }else if(!user){
                     log.debug("登陆失败，密码不正确");
                     //密码错误

@@ -33,14 +33,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.json());
+app.use(express.json());
 app.use(express.bodyParser({
     uploadDir: '/Users/wangboo/WebstormProjects/bootstrap3/public/icon/',
     keepExtensions: true,
     limit: '10mb'
 }));
-//app.use(express.urlencoded());
-//app.use(express.methodOverride());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
 //使用session
 app.use(express.cookieParser());
 app.use(express.session({
@@ -62,7 +62,7 @@ app.use(partials());
 routes(app);
 
 
-// development only
+//development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
